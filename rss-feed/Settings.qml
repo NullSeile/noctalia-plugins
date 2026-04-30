@@ -15,6 +15,7 @@ ColumnLayout {
     property var defaults: pluginApi?.manifest?.metadata?.defaultSettings || ({})
 
     property var feeds: cfg.feeds || defaults.feeds || []
+    property bool showOnlyWhenUnread: cfg.showOnlyWhenUnread ?? defaults.showOnlyWhenUnread ?? false
     property int updateInterval: (cfg.updateInterval ?? defaults.updateInterval ?? 600)
     property int maxItemsPerFeed: cfg.maxItemsPerFeed ?? defaults.maxItemsPerFeed ?? 10
     property bool showOnlyUnread: cfg.showOnlyUnread ?? defaults.showOnlyUnread ?? false
@@ -35,6 +36,7 @@ ColumnLayout {
         }
 
         pluginApi.pluginSettings.feeds = feeds;
+        pluginApi.pluginSettings.showOnlyWhenUnread = showOnlyWhenUnread;
         pluginApi.pluginSettings.updateInterval = updateInterval;
         pluginApi.pluginSettings.maxItemsPerFeed = maxItemsPerFeed;
         pluginApi.pluginSettings.showOnlyUnread = showOnlyUnread;
@@ -143,6 +145,25 @@ ColumnLayout {
             checked: showOnlyUnread
             onToggled: {
                 showOnlyUnread = checked;
+                saveSettings();
+            }
+        }
+    }
+
+    // Show When Unread Only
+    ColumnLayout {
+        Layout.fillWidth: true
+        spacing: Style.marginS
+
+        NLabel {
+            label: pluginApi?.tr("settings.showOnlyWhenUnread", "Show Only When Unread") || "Show Only When Unread"
+            description: pluginApi?.tr("settings.showOnlyWhenUnreadDesc", "Only show the widget when there are unread articles") || "Only show the widget when there are unread articles"
+        }
+
+        NToggle {
+            checked: showOnlyWhenUnread
+            onToggled: {
+                showOnlyWhenUnread = checked;
                 saveSettings();
             }
         }

@@ -14,6 +14,8 @@
     "seconds": "seconds",
     "showOnlyUnread": "Show Only Unread",
     "showOnlyUnreadDesc": "Display only unread items in the panel",
+    "showOnlyWhenUnread": "Show Only When Unread",
+    "showOnlyWhenUnreadDesc": "Only show the widget when there are unread articles",
     "title": "RSS Feed Reader Settings",
     "updateInterval": "Update Interval",
     "updateIntervalDesc": "How often to check for new items (seconds)"
